@@ -1,11 +1,10 @@
 # ARIANE_example
 Setting up and running ARIANE on JASMIN. The following compilation a testing is done on one of the jasmin-sci[1-6] machines.
 
-Working from your home directory on JASMIN ("/home/users/username"). Don't forget to change for your username. Create a directory for the ariane package:
+Create a directory for the ariane package:
 
 ```
-export ARIANE_ROOT_DIR=path_to_ariane #this didn't work for me, see next line below...
-export ARIANE_ROOT_DIR=/home/users/username/path_to_ariane
+export ARIANE_ROOT_DIR=full_path_to_ariane
 [ -d $ARIANE_ROOT_DIR ] || mkdir -p $ARIANE_ROOT_DIR
 cd $ARIANE_ROOT_DIR
 ```
@@ -54,11 +53,11 @@ For some reason the HDF5 path is not added to the `LD_LIBRARY_PATH` so we do tha
 export LD_LIBRARY_PATH="${HDF5_LIB}:${LD_LIBRARY_PATH}"
 ```
 
-Then you will need to uncompress the file to be able to run the configuration. This will automatically create a directory "ariane-2.2.8_04"
+Then you will need to uncompress the file to be able to run the configuration. This will automatically create a directory `ariane-2.2.8_04`:
 
 ```
 gunzip ariane-2.2.8_04.tar.gz
-tar -xf ariane-2.2.8_04.tar
+tar -xfz ariane-2.2.8_04.tar
 cd ariane-2.2.8_04
 ```
 
@@ -85,4 +84,24 @@ cd ~/bin
 ln -s $ARIANE_ROOT_DIR/ariane-2.2.8_04/intel/bin/ariane ariane
 ```
 
-Now to run a simple test.
+Now to run a simple test. 
+
+The Data directory was initialised using the following script:
+
+```
+for grd in T U V W
+do 
+  n=1
+    for y in {2000..2009}
+    do 
+      cd $y
+      for fn in *d05$grd\.nc
+      do 
+        nstr=`printf %3.3i $n`
+        ln -s /gws/nopw/j04/nemo_vol1/ORCA0083-N006/means/$y/$fn $ARIANE_ROOT_DIR/Data/ORCA0083-N006_$nstr$grd\.nc
+        n=$((n + 1))
+      done
+      cd ../
+  done
+done
+```
