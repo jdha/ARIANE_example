@@ -1,10 +1,11 @@
 # ARIANE_example
 Setting up and running ARIANE on JASMIN. The following compilation a testing is done on one of the jasmin-sci[1-6] machines.
 
-Create a directory for the ariane package:
+Working from your home directory on JASMIN ("/home/users/username"). Don't forget to change for your username. Create a directory for the ariane package:
 
 ```
-export ARIANE_ROOT_DIR=path_to_araine
+export ARIANE_ROOT_DIR=path_to_ariane #this didn't work for me, see next line below...
+export ARIANE_ROOT_DIR=/home/users/username/path_to_ariane
 [ -d $ARIANE_ROOT_DIR ] || mkdir -p $ARIANE_ROOT_DIR
 cd $ARIANE_ROOT_DIR
 ```
@@ -12,6 +13,7 @@ cd $ARIANE_ROOT_DIR
 Get code source (a username and password will be required. See the [ARIANE](http://stockage.univ-brest.fr/~grima/Ariane/) web site for more details):
 
 ```wdget --user user --password pass http://stockage.univ-brest.fr/~grima/Ariane/download/ariane-2.2.8_04.tar.gz```
+
 
 Load modules:
 
@@ -52,10 +54,17 @@ For some reason the HDF5 path is not added to the `LD_LIBRARY_PATH` so we do tha
 export LD_LIBRARY_PATH="${HDF5_LIB}:${LD_LIBRARY_PATH}"
 ```
 
+Then you will need to uncompress the file to be able to run the configuration. This will automatically create a directory "ariane-2.2.8_04"
+
+```
+gunzip ariane-2.2.8_04.tar.gz
+tar -xf ariane-2.2.8_04.tar
+cd ariane-2.2.8_04
+```
+
 Run configure script:
 
 ```
-cd ariane-2.2.8_04
 mkdir intel
 ./configure --prefix=$ARIANE_ROOT_DIR/ariane-2.2.8_04/intel  --enable-hdf5
 ```
