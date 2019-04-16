@@ -9,7 +9,7 @@ export ARIANE_ROOT_DIR=path_to_araine
 cd $ARIANE_ROOT_DIR
 ```
 
-Code source:
+Get code source (a username and password will be required. See the [ARIANE](http://stockage.univ-brest.fr/~grima/Ariane/) web site for more details):
 
 ```wdget --user user --password pass http://stockage.univ-brest.fr/~grima/Ariane/download/ariane-2.2.8_04.tar.gz```
 
