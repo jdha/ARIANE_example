@@ -1,5 +1,5 @@
 # ARIANE_example
-Setting up and running ARIANE on JASMIN
+Setting up and running ARIANE on JASMIN. The following compilation a testing is done on one of the jasmin-sci[1-6] machines.
 
 Create a directory for the ariane package:
 
