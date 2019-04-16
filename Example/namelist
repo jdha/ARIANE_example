@@ -1,0 +1,105 @@
+&ARIANE
+  key_sequential = .TRUE. ,
+  key_alltracers = .TRUE.,
+  mode           = 'qualitative',
+  forback        = 'forward',
+  bin            = 'nobin',
+  nmax           = 2000000,
+  tunit          = 86400.,
+  tcyc           = 86400.,
+  ntfic          = 5,
+  key_approximatesigma=.FALSE.,
+  key_computesigma = .TRUE.,
+  zsigma           =   2000.,
+/
+&SEQUENTIAL
+  maxcycles      = 1,
+  key_interp_temporal = .FALSE.,
+/
+&QUALITATIVE
+  delta_t   = 86400.,
+  frequency = 1,
+  nb_output = 365,
+  mask      = .FALSE.,
+  key_region = .TRUE.,
+/
+&OPAPARAM
+  imt      = 4322,
+  jmt      = 3059,
+  kmt      = 75,
+  lmt      = 364,
+  w_surf_option = 'zero',
+  key_periodic     = .TRUE.,
+  key_jfold        = .FALSE.,
+  key_computew     = .FALSE.,
+  key_partialsteps = .TRUE.,
+/
+&ZONALCRT
+  c_dir_zo     = '../SO_006/data',
+  c_prefix_zo  = 'U',
+  ind0_zo      = 731,
+  indn_zo      = 1178,
+  maxsize_zo   = 4,
+  c_suffix_zo  = '.nc',
+  nc_var_zo    = 'uo',
+  nc_var_eivu  = 'NONE',
+  nc_att_mask_zo = '_FillValue',
+/
+&MERIDCRT
+  c_dir_me     = '../SO_006/data',
+  c_prefix_me  = 'V',
+  ind0_me      = 731,
+  indn_me      = 1178,
+  maxsize_me   = 4,
+  c_suffix_me  = '.nc',
+  nc_var_me    = 'vo',
+  nc_var_eivv  = 'NONE',
+  nc_att_mask_me = '_FillValue',
+/
+&VERTICRT
+  c_dir_ve     = '../SO_006/data',
+  c_prefix_ve  = 'W',
+  ind0_ve      = 731,
+  indn_ve      = 1178,
+  maxsize_ve   = 4,
+  c_suffix_ve  = '.nc',
+  nc_var_ve    = 'wo',
+  nc_var_eivw  = 'NONE',
+  nc_att_mask_ve = '_FillValue',
+/
+&TEMPERAT
+  c_dir_te     = '../SO_006/data',
+  c_prefix_te  = 'T',
+  ind0_te      = 731,
+  indn_te      = 1178,
+  maxsize_te   = 4,
+  c_suffix_te  = '.nc',
+  nc_var_te    = 'potemp',
+  nc_att_mask_te = '_FillValue',
+/
+&SALINITY
+  c_dir_sa     = '../SO_006/data',
+  c_prefix_sa  = 'T',
+  ind0_sa      = 731,
+  indn_sa      = 1178,
+  maxsize_sa   = 4,
+  c_suffix_sa  = '.nc',
+  nc_var_sa    = 'salin'
+  nc_att_mask_sa = '_FillValue',
+/
+&MESH
+  dir_mesh     = '../SO_006/data', 
+  fn_mesh      = 'meshmask_006.nc', 
+  nc_var_xx_tt = 'glamt', 
+  nc_var_xx_uu = 'glamu',  
+  nc_var_yy_tt = 'gphit', 
+  nc_var_yy_vv = 'gphiv', 
+  nc_var_zz_ww = 'gdepw',
+  nc_var_e2u   = 'e2u', 
+  nc_var_e1v   = 'e1v', 
+  nc_var_e1t   = 'e1t', 
+  nc_var_e2t   = 'e2t', 
+  nc_var_e3t   = 'e3t',
+  nc_var_tmask = 'tmask',
+  nc_mask_val  = 0.,
+/

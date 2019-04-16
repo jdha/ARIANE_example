@@ -1,0 +1,8 @@
+#!/bin/bash
+yr=$1
+a=`expr \( $yr - 2000 \) \* 73 + 1 `
+b=`expr 1094 - \( $yr - 2000 \) \* 73`
+echo $yr $a $b
+sed -e "s/XX/$a/g" namelist_template > tmp
+sed -e "s/YY/$b/g" tmp > namelist
+rm tmp

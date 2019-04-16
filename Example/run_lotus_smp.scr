@@ -1,0 +1,30 @@
+#!/bin/bash
+#BSUB –o %J.o
+#BSUB –e %J.e
+#BSUB -n 1
+#BSUB -W 08:00
+#BSUB -R "rusage[mem=65000]"
+module purge
+module load intel/14.0
+module load netcdf/intel/14.0/4.3.2
+module load netcdff/intel/14.0/4.2
+module load libPHDF5/intel/14.0/1.8.12
+cd /group_workspaces/jasmin2/nemo/vol5/jdha/SO_006_2010
+echo "HOSTNAME:"
+echo $HOSTNAME
+# echo "module avail:"
+# module avail
+echo "module list:"
+module list
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${HDF5_LIBDIR}
+
+# Run ARIANE
+date
+echo "ARIANE job starting"
+echo "-------------------"
+time ariane
+time nccopy -k3 -d9 ariane_trajectories_qualitative.nc at_qual_2010.nc
+date
+echo "ARIANE job finished"
+echo "-------------------"
+exit
